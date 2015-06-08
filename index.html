@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Zaina's Injury Tracker</title>
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"</link>
+	</head>
+	<style>
+		body {
+	    background-image: url("http://www.peteradamsphoto.com/wp-content/uploads/2011/06/sf.CF001644.web_.jpg");
+		}
+		h1{
+			padding-top:150px;
+			color:white;
+		}
+		h3 {
+			color:white;
+		}
+	</style>
+	<body class="text-center">
+
+		<h1>Time Since Zaina's Last Injury </h1>
+		<div id="countup">
+			<b>
+				<h3>
+			  <span>It's been</span>
+			  <p>
+				  <span id="days">00</span>
+				  <span class="timeRefDays">days</span>
+				  <span id="hours">00</span>
+				  <span class="timeRefHours">hours</span>
+				  <span id="minutes">00</span>
+				  <span class="timeRefMinutes">minutes</span>
+				  <span id="seconds">00</span>
+				  <span class="timeRefSeconds">seconds</span>
+			  </p>
+			  <p>Last Injury :</p>
+			  <p>Fell off bicycle - Bruised Hand</p>
+			  </h3>
+		  </b>
+		</div>
+	</body>
+	<script>
+		/*
+* Basic Count Up from Date and Time
+* Author: @mrwigster / trulycode.com
+*/
+window.onload=function() {
+  // Month,Day,Year,Hour,Minute,Second
+  upTime('jun,05,2015,10:30:00'); // ****** Change this line!
+}
+function upTime(countTo) {
+  now = new Date();
+  countTo = new Date(countTo);
+  difference = (now-countTo);
+
+  days=Math.floor(difference/(60*60*1000*24)*1);
+  hours=Math.floor((difference%(60*60*1000*24))/(60*60*1000)*1);
+  mins=Math.floor(((difference%(60*60*1000*24))%(60*60*1000))/(60*1000)*1);
+  secs=Math.floor((((difference%(60*60*1000*24))%(60*60*1000))%(60*1000))/1000*1);
+
+  document.getElementById('days').firstChild.nodeValue = days;
+  document.getElementById('hours').firstChild.nodeValue = hours;
+  document.getElementById('minutes').firstChild.nodeValue = mins;
+  document.getElementById('seconds').firstChild.nodeValue = secs;
+
+  clearTimeout(upTime.to);
+  upTime.to=setTimeout(function(){ upTime(countTo); },1000);
+}
+	</script>
+</html>
